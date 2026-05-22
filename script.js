@@ -67,8 +67,8 @@ const k_svgZap   = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="cu
    3 — ESTADO DEL MÓDULO
    ================================================================ */
 
-/* Data URL del último QR generado — se usa para la descarga */
-let v_currentQRDataUrl = null;
+/* Referencia a la instancia QRCode activa — se usa para la descarga */
+let v_qrInstance = null;
 
 /* ================================================================
    4 — CODIFICACIÓN BASE64 (Unicode-safe con TextEncoder/Decoder)
@@ -173,75 +173,77 @@ const m_validateForm = () => {
 
 /* ================================================================
    7 — GENERACIÓN Y DESCARGA DEL QR
-       Usa qrcode@1.5.3 → QRCode.toDataURL() → Promise<dataURL>
+       Usa qrcodejs (davidshimjs) — API síncrona pura browser.
+       new QRCode(element, opts) crea un <canvas> directamente.
+       No requiere bundler ni Promise — funciona en Vercel sin config.
    ================================================================ */
 
 /**
  * Valida, codifica y genera el QR. Muestra el panel de resultado.
+ * Síncrono — qrcodejs dibuja el canvas de forma inmediata.
  */
-const m_generateQR = async () => {
+const m_generateQR = () => {
   const v_data = m_validateForm();
   if (!v_data) return;
-
-  /* Estado cargando */
-  k_btnGenerate.disabled = true;
-  k_btnGenerate.innerHTML = `${k_svgZap} Generando…`;
 
   const v_b64     = m_encodeToBase64(v_data);
   const v_fullUrl = m_buildProfileUrl(v_b64);
 
-  try {
-    /* qrcode@1.5.3: QRCode.toDataURL devuelve una Promise */
-    const v_dataUrl = await QRCode.toDataURL(v_fullUrl, {
-      errorCorrectionLevel: 'H',
-      width:   256,
-      margin:  2,
-      color:   { dark: '#1a202c', light: '#ffffff' },
-    });
+  /* Limpiar QR previo y reiniciar instancia */
+  k_qrCanvas.innerHTML = '';
+  v_qrInstance = null;
 
-    /* Renderizar imagen en el contenedor */
-    k_qrCanvas.innerHTML = '';
-    const v_img = document.createElement('img');
-    v_img.src    = v_dataUrl;
-    v_img.alt    = 'Código QR médico Vytaris';
-    v_img.width  = 256;
-    v_img.height = 256;
-    k_qrCanvas.appendChild(v_img);
+  /* new QRCode() crea un <canvas> dentro del contenedor de forma síncrona */
+  v_qrInstance = new QRCode(k_qrCanvas, {
+    text:         v_fullUrl,
+    width:        256,
+    height:       256,
+    colorDark:    '#1a202c',
+    colorLight:   '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H,
+  });
 
-    /* Guardar para descarga posterior */
-    v_currentQRDataUrl = v_dataUrl;
+  /* Previsualización de la URL (truncada) */
+  const k_maxChars = 55;
+  k_qrUrlPreview.textContent = v_fullUrl.length > k_maxChars
+    ? v_fullUrl.slice(0, k_maxChars) + '…'
+    : v_fullUrl;
 
-    /* Previsualización de la URL (truncada) */
-    const k_maxChars = 55;
-    k_qrUrlPreview.textContent = v_fullUrl.length > k_maxChars
-      ? v_fullUrl.slice(0, k_maxChars) + '…'
-      : v_fullUrl;
-
-    /* Mostrar panel y hacer scroll */
-    k_qrResult.classList.remove('hidden');
-    k_qrResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  } catch (v_err) {
-    console.error('[Vytaris] Error generando QR:', v_err);
-    alert('No se pudo generar el QR. Revisa tu conexión e intenta de nuevo.');
-  } finally {
-    /* Restaurar botón */
-    k_btnGenerate.disabled = false;
-    k_btnGenerate.innerHTML = `${k_svgZap} Generar código QR`;
-  }
+  /* Mostrar panel y hacer scroll suave */
+  k_qrResult.classList.remove('hidden');
+  k_qrResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 /**
- * Descarga el QR como archivo PNG usando el dataURL guardado.
+ * Descarga el QR como PNG.
+ * qrcodejs crea un <canvas> en browsers modernos y un <img> como fallback.
+ * Manejamos ambos casos.
  */
 const m_downloadQR = () => {
-  if (!v_currentQRDataUrl) {
+  const v_canvas = k_qrCanvas.querySelector('canvas');
+  const v_img    = k_qrCanvas.querySelector('img');
+
+  let v_dataUrl = null;
+
+  if (v_canvas) {
+    v_dataUrl = v_canvas.toDataURL('image/png');
+  } else if (v_img && v_img.src) {
+    /* Fallback IE/legacy: redibujar img en canvas temporal */
+    const v_tmp    = document.createElement('canvas');
+    v_tmp.width    = 256;
+    v_tmp.height   = 256;
+    v_tmp.getContext('2d').drawImage(v_img, 0, 0);
+    v_dataUrl = v_tmp.toDataURL('image/png');
+  }
+
+  if (!v_dataUrl) {
     alert('Primero genera el código QR.');
     return;
   }
-  const v_a      = document.createElement('a');
-  v_a.download   = 'vytaris-qr-medico.png';
-  v_a.href       = v_currentQRDataUrl;
+
+  const v_a    = document.createElement('a');
+  v_a.download = 'vytaris-qr-medico.png';
+  v_a.href     = v_dataUrl;
   document.body.appendChild(v_a);
   v_a.click();
   document.body.removeChild(v_a);
@@ -256,9 +258,9 @@ const m_resetForm = () => {
   m_clearError(k_inputContact, k_errorContact);
   m_clearError(k_selectBlood,  k_errorBlood);
 
-  k_qrCanvas.innerHTML    = '';
+  k_qrCanvas.innerHTML       = '';
   k_qrUrlPreview.textContent = '';
-  v_currentQRDataUrl      = null;
+  v_qrInstance               = null;
   k_qrResult.classList.add('hidden');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -1,70 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 255" role="img" aria-label="Logotipo Vytaris">
-
-  <!-- ── Escudo: forma de escudo policial/médico con esquinas redondeadas ── -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 118" role="img" aria-label="Escudo médico Vytaris">
   <defs>
-    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#2563C8"/>
-      <stop offset="100%" stop-color="#1A46A0"/>
+    <!-- Gradiente: azul ligeramente más claro que el header para que contraste -->
+    <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#2B72D8"/>
+      <stop offset="100%" stop-color="#1340A0"/>
     </linearGradient>
-    <filter id="shieldShadow" x="-5%" y="-5%" width="115%" height="115%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1A46A0" flood-opacity="0.3"/>
-    </filter>
   </defs>
 
   <!-- Cuerpo del escudo -->
   <path
-    d="M100 8
-       L180 34
-       Q192 40 192 56
-       L192 108
-       C192 158 158 192 100 212
-       C42  192  8  158  8  108
-       L8   56
-       Q8   40  20  34
-       Z"
-    fill="url(#shieldGrad)"
-    filter="url(#shieldShadow)"
+    d="M50 4 C38 4 12 15 12 15 L12 52 C12 80 28 95 50 104 C72 95 88 80 88 52 L88 15 C88 15 62 4 50 4 Z"
+    fill="url(#sg)"
+  />
+  <!-- Borde blanco semitransparente para hacerlo visible sobre el header azul -->
+  <path
+    d="M50 4 C38 4 12 15 12 15 L12 52 C12 80 28 95 50 104 C72 95 88 80 88 52 L88 15 C88 15 62 4 50 4 Z"
+    fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"
   />
 
-  <!-- Cruz médica — barra vertical -->
-  <rect x="88" y="56" width="24" height="100" rx="6" fill="white"/>
-
+  <!-- Cruz médica — barra vertical (centrada en 50,53) -->
+  <rect x="44.5" y="29" width="11" height="48" rx="3" fill="white"/>
   <!-- Cruz médica — barra horizontal -->
-  <rect x="52" y="92" width="96" height="24" rx="6" fill="white"/>
+  <rect x="26" y="47.5" width="48" height="11" rx="3" fill="white"/>
 
-  <!-- Arco verde izquierdo: de posición "8 en punto" a "12 en punto" -->
-  <!-- Centro de arcos: (100, 106), radio 62 -->
-  <!-- 8 en punto (SVG ~130°): (100+62*cos130, 106+62*sin130) = (100-39.9, 106+47.5) = (60, 153) -->
-  <!-- 12 en punto (SVG ~270°): (100, 106-62) = (100, 44) -->
-  <path
-    d="M 60 153 A 62 62 0 0 0 100 44"
-    stroke="#2DC78A"
-    stroke-width="9"
-    fill="none"
-    stroke-linecap="round"
-  />
+  <!-- Arco verde izquierdo: inicio 120° (36,77) → fin 270° (50,25), sentido antihorario -->
+  <path d="M 36 77 A 28 28 0 0 0 50 25" stroke="#2DC78A" stroke-width="5" fill="none" stroke-linecap="round"/>
 
-  <!-- Arco verde derecho: de posición "2 en punto" a "6 en punto" -->
-  <!-- 2 en punto (SVG ~330°): (100+62*cos330, 106+62*sin330) = (100+53.7, 106-31) = (154, 75) -->
-  <!-- 6 en punto (SVG ~90°):  (100, 106+62) = (100, 168) -->
-  <path
-    d="M 154 75 A 62 62 0 0 1 100 168"
-    stroke="#2DC78A"
-    stroke-width="9"
-    fill="none"
-    stroke-linecap="round"
-  />
-
-  <!-- ── Wordmark: "vytaris" en minúsculas, bold, azul ── -->
-  <text
-    x="100"
-    y="240"
-    text-anchor="middle"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
-    font-weight="800"
-    font-size="42"
-    letter-spacing="-1"
-    fill="#1A56B2"
-  >vytaris</text>
-
+  <!-- Arco verde derecho: inicio 330° (74,39) → fin 90° (50,81), sentido horario -->
+  <path d="M 74 39 A 28 28 0 0 1 50 81" stroke="#2DC78A" stroke-width="5" fill="none" stroke-linecap="round"/>
 </svg>
