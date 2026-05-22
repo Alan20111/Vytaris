@@ -90,7 +90,6 @@ body {
 .header__logo {
   height: 72px;
   width: auto;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.30));
 }
 
 /* ── Fila 2: eslogan de marca centrado ──
@@ -104,11 +103,11 @@ body {
 }
 
 .header__eslogan {
-  color: var(--k-green);
+  color: rgba(255,255,255,0.85);
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  font-style: normal;
   line-height: 1.45;
   max-width: 540px;
   margin: 0 auto;
