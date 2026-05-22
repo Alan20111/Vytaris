@@ -1,69 +1,77 @@
 <!DOCTYPE html>
-<!-- v5 -->
+<!-- Este archivo es el "esqueleto" de la página: define lo que se ve en pantalla -->
 <html lang="es">
 <head>
+  <!-- Configuración básica que el navegador necesita para mostrar bien la página -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1A56B2" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="Vytaris — Perfil médico de emergencia codificado en QR. Sin servidores, sin registro." />
   <title>Vytaris — Información de Emergencia</title>
+
+  <!-- Le decimos al navegador dónde está el archivo de estilos (colores, tamaños, etc.) -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════════════════
-       SPRITE SVG — iconos de la aplicación (stroke 24px)
-       ══════════════════════════════════════════════════════ -->
+  <!--
+    CAJA DE ÍCONOS INVISIBLE
+    Aquí guardamos todos los íconos que usa la app, como una "colección de sellos".
+    No se ven en pantalla, pero podemos usarlos en cualquier parte escribiendo:
+      <svg><use href="#nombre-del-icono"/></svg>
+  -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+
     <symbol id="ico-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
     </symbol>
+
     <symbol id="ico-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/>
       <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/>
-      <path d="M2 21h20"/><path d="M7 8v2"/><path d="M12 8v2"/><path d="M17 8v2"/>
-      <path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/>
+      <path d="M2 21h20"/><path d="M12 8v2"/>
     </symbol>
+
     <symbol id="ico-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/>
       <circle cx="12" cy="8" r="2.5"/>
     </symbol>
+
     <symbol id="ico-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18L6.61 2a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.73 9.77a16 16 0 0 0 6.29 6.29l1.13-1.14a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
+
     <symbol id="ico-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2C12 2 4 10.5 4 15.5a8 8 0 0 0 16 0C20 10.5 12 2 12 2z"/>
     </symbol>
+
     <symbol id="ico-alert-tri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
       <line x1="12" y1="9" x2="12" y2="13"/>
       <circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/>
     </symbol>
+
     <symbol id="ico-med-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="3"/>
       <line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
     </symbol>
+
     <symbol id="ico-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
     </symbol>
+
     <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
       <polyline points="7 10 12 15 17 10"/>
       <line x1="12" y1="15" x2="12" y2="3"/>
     </symbol>
+
     <symbol id="ico-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="1 4 1 10 7 10"/>
       <path d="M3.51 15a9 9 0 1 0 .49-3.45"/>
     </symbol>
-    <symbol id="ico-call" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18L6.61 2a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.73 9.77a16 16 0 0 0 6.29 6.29l1.13-1.14a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </symbol>
-    <symbol id="ico-siren" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18.36 6.64A9 9 0 1 1 5.64 17.36"/>
-      <path d="M12 2v4M2 12H6M12 22v-2"/>
-      <line x1="12" y1="12" x2="12" y2="12.01" stroke-width="3"/>
-    </symbol>
+
     <symbol id="ico-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="3" width="7" height="7" rx="1"/>
       <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -73,24 +81,25 @@
       <rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/>
       <path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/>
     </symbol>
+
+    <symbol id="ico-siren" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18.36 6.64A9 9 0 1 1 5.64 17.36"/>
+      <path d="M12 2v4M2 12H6M12 22v-2"/>
+      <line x1="12" y1="12" x2="12" y2="12.01" stroke-width="3"/>
+    </symbol>
+
   </svg>
 
 
-  <!-- ══════════════════════════════════════════════════════
-       CABECERA
-       Fila 1: escudo + wordmark + slogan técnico
-       Fila 2: eslogan de marca centrado (del PDF)
-       ══════════════════════════════════════════════════════ -->
+  <!-- LA BARRA DE ARRIBA — siempre visible, muestra el logo y la frase de la marca -->
   <header class="header" role="banner">
 
-    <!-- Logo principal -->
     <div class="header__top">
       <div class="header__inner">
         <img src="logo.png" class="header__logo" alt="Vytaris — Información de emergencia" />
       </div>
     </div>
 
-    <!-- Eslogan de marca — centrado, del PDF branding -->
     <div class="header__eslogan-bar">
       <p class="header__eslogan">
         "Más vale prevenir un segundo,<br class="eslogan-br"> que lamentar una eternidad."
@@ -100,9 +109,11 @@
   </header>
 
 
-  <!-- ══════════════════════════════════════════════════════
-       MODO CAPTURA — Formulario (URL sin ?v_info)
-       ══════════════════════════════════════════════════════ -->
+  <!--
+    PANTALLA 1 — FORMULARIO (modo normal)
+    Solo aparece cuando abres la página sin datos en la URL.
+    El usuario llena su información y genera su código QR.
+  -->
   <main id="k-form-section" class="container" aria-label="Formulario de perfil médico">
 
     <div class="card">
@@ -114,7 +125,6 @@
 
       <form id="k-profile-form" class="form" novalidate autocomplete="off">
 
-        <!-- Nombre completo -->
         <div class="form__group">
           <label class="form__label" for="k-input-name">
             <svg class="icon" aria-hidden="true"><use href="#ico-user"/></svg>
@@ -125,18 +135,15 @@
           <span class="form__error" id="k-error-name" role="alert" aria-live="polite"></span>
         </div>
 
-        <!-- Fecha de nacimiento -->
         <div class="form__group">
           <label class="form__label" for="k-input-birthdate">
             <svg class="icon" aria-hidden="true"><use href="#ico-cake"/></svg>
             Fecha de nacimiento <span class="form__required">*</span>
           </label>
-          <input class="form__input" type="date" id="k-input-birthdate"
-            max="" required />
+          <input class="form__input" type="date" id="k-input-birthdate" required />
           <span class="form__error" id="k-error-birthdate" role="alert" aria-live="polite"></span>
         </div>
 
-        <!-- Código postal -->
         <div class="form__group">
           <label class="form__label" for="k-input-zip">
             <svg class="icon" aria-hidden="true"><use href="#ico-pin"/></svg>
@@ -146,7 +153,6 @@
             placeholder="Ej. 38020" maxlength="10" inputmode="numeric" />
         </div>
 
-        <!-- Contacto de emergencia -->
         <div class="form__group">
           <label class="form__label" for="k-input-contact">
             <svg class="icon" aria-hidden="true"><use href="#ico-phone"/></svg>
@@ -157,7 +163,6 @@
           <span class="form__error" id="k-error-contact" role="alert" aria-live="polite"></span>
         </div>
 
-        <!-- Tipo de sangre -->
         <div class="form__group">
           <label class="form__label" for="k-select-blood">
             <svg class="icon" aria-hidden="true"><use href="#ico-drop"/></svg>
@@ -178,7 +183,6 @@
           <span class="form__error" id="k-error-blood" role="alert" aria-live="polite"></span>
         </div>
 
-        <!-- Alergias -->
         <div class="form__group">
           <label class="form__label" for="k-input-allergies">
             <svg class="icon" aria-hidden="true"><use href="#ico-alert-tri"/></svg>
@@ -188,7 +192,6 @@
             placeholder="Ej. Penicilina, mariscos, látex…" rows="3"></textarea>
         </div>
 
-        <!-- Enfermedades crónicas -->
         <div class="form__group">
           <label class="form__label" for="k-input-conditions">
             <svg class="icon" aria-hidden="true"><use href="#ico-med-cross"/></svg>
@@ -206,7 +209,7 @@
       </form>
     </div>
 
-    <!-- Panel QR -->
+    <!-- Panel del QR generado — empieza oculto y aparece al presionar el botón -->
     <div id="k-qr-result" class="card card--qr hidden" aria-live="polite">
       <h2 class="card__title">
         <svg class="icon" aria-hidden="true"><use href="#ico-qr"/></svg>
@@ -231,9 +234,11 @@
   </main>
 
 
-  <!-- ══════════════════════════════════════════════════════
-       MODO PERFIL — Tarjeta de emergencia (URL con ?v_info)
-       ══════════════════════════════════════════════════════ -->
+  <!--
+    PANTALLA 2 — TARJETA DE EMERGENCIA (modo lectura)
+    Solo aparece cuando alguien escanea el QR.
+    La URL termina en "?v_info=..." con los datos de la persona codificados.
+  -->
   <main id="k-profile-section" class="container hidden" aria-label="Tarjeta de emergencia médica">
 
     <div class="alert-banner" role="alert" aria-live="assertive">
@@ -242,6 +247,7 @@
       <svg class="icon icon--lg" aria-hidden="true"><use href="#ico-siren"/></svg>
     </div>
 
+    <!-- El JavaScript llena este espacio con los datos médicos de la persona -->
     <div id="k-medical-card" class="medical-card" role="region" aria-label="Datos médicos del portador"></div>
 
     <p class="disclaimer">
@@ -252,8 +258,9 @@
   </main>
 
 
-  <!-- qrcodejs — pura browser, sin bundler, funciona en Vercel -->
+  <!-- Librería externa que genera los códigos QR (se descarga de internet al cargar la página) -->
   <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+  <!-- Nuestro código JavaScript con toda la lógica de la app -->
   <script src="script.js"></script>
 
 </body>
