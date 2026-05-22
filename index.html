@@ -11,119 +11,91 @@
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════════════
-       SPRITE DE ICONOS SVG (oculto, referenciable con <use>)
-       Stroke-based, estilo Heroicons 24px outline.
-       ══════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       SPRITE SVG — todos los iconos de la aplicación.
+       Stroke-based 24 px, estilo Heroicons outline.
+       Se referencian con <svg><use href="#id"/></svg>
+       ══════════════════════════════════════════════════════ -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 
-    <!-- Persona / Nombre -->
     <symbol id="ico-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="8" r="4"/>
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
     </symbol>
 
-    <!-- Pin de ubicación / CP -->
     <symbol id="ico-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/>
       <circle cx="12" cy="8" r="2.5"/>
     </symbol>
 
-    <!-- Teléfono -->
     <symbol id="ico-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18L6.61 2a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.73 9.77a16 16 0 0 0 6.29 6.29l1.13-1.14a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </symbol>
 
-    <!-- Gota de sangre -->
     <symbol id="ico-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2C12 2 4 10.5 4 15.5a8 8 0 0 0 16 0C20 10.5 12 2 12 2z"/>
     </symbol>
 
-    <!-- Triángulo de advertencia / Alergias -->
-    <symbol id="ico-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="ico-alert-tri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
       <line x1="12" y1="9" x2="12" y2="13"/>
       <circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/>
     </symbol>
 
-    <!-- Cruz médica / Enfermedades -->
-    <symbol id="ico-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="ico-med-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="3"/>
       <line x1="12" y1="8" x2="12" y2="16"/>
-      <line x1="8" y1="12" x2="16" y2="12"/>
+      <line x1="8"  y1="12" x2="16" y2="12"/>
     </symbol>
 
-    <!-- Rayo / Generar -->
     <symbol id="ico-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
     </symbol>
 
-    <!-- Descarga -->
     <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
       <polyline points="7 10 12 15 17 10"/>
       <line x1="12" y1="15" x2="12" y2="3"/>
     </symbol>
 
-    <!-- Reinicio / Nuevo perfil -->
     <symbol id="ico-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="1 4 1 10 7 10"/>
       <path d="M3.51 15a9 9 0 1 0 .49-3.45"/>
     </symbol>
 
-    <!-- Llamar (teléfono con ondas) -->
     <symbol id="ico-call" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18L6.61 2a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.73 9.77a16 16 0 0 0 6.29 6.29l1.13-1.14a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      <path d="M16 2a4 4 0 0 1 4 4" stroke-linecap="round"/>
-      <path d="M17 7a2 2 0 0 0-1-1.73" stroke-linecap="round"/>
     </symbol>
 
-    <!-- Sirena / emergencia -->
     <symbol id="ico-siren" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+      <path d="M18.36 6.64A9 9 0 1 1 5.64 17.36"/>
+      <path d="M12 2v4M2 12H6M12 22v-2"/>
+      <line x1="12" y1="12" x2="12" y2="12.01" stroke-width="3"/>
     </symbol>
 
-    <!-- Código QR -->
+    <symbol id="ico-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L3 7v6c0 5.25 3.8 10.15 9 11.32C17.2 23.15 21 18.25 21 13V7z"/>
+    </symbol>
+
     <symbol id="ico-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="3" width="7" height="7" rx="1"/>
-      <rect x="14" y="3" width="7" height="7" rx="1"/>
-      <rect x="3" y="14" width="7" height="7" rx="1"/>
-      <rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/>
-      <rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/>
-      <rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/>
-      <line x1="14" y1="14" x2="14" y2="14.01"/>
-      <line x1="18" y1="14" x2="18" y2="14.01"/>
-      <line x1="21" y1="14" x2="21" y2="14.01"/>
-      <line x1="14" y1="18" x2="14" y2="18.01"/>
-      <line x1="18" y1="18" x2="21" y2="18"/>
-      <line x1="21" y1="21" x2="21" y2="21.01"/>
-      <line x1="14" y1="21" x2="17" y2="21"/>
+      <rect x="3"  y="3"  width="7" height="7" rx="1"/>
+      <rect x="14" y="3"  width="7" height="7" rx="1"/>
+      <rect x="3"  y="14" width="7" height="7" rx="1"/>
+      <rect x="5"  y="5"  width="3" height="3" fill="currentColor" stroke="none"/>
+      <rect x="16" y="5"  width="3" height="3" fill="currentColor" stroke="none"/>
+      <rect x="5"  y="16" width="3" height="3" fill="currentColor" stroke="none"/>
+      <path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/>
     </symbol>
 
   </svg>
 
 
-  <!-- ══════════════════════════════════════════════════
-       CABECERA — Logo SVG + Wordmark + Slogan
-       ══════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       CABECERA — Logo PNG/SVG real + nombre
+       ══════════════════════════════════════════════════════ -->
   <header class="header" role="banner">
     <div class="header__inner">
-
-      <!-- Logo: escudo médico con arcos verdes (SVG inline a escala) -->
-      <svg class="header__logo-icon" viewBox="0 0 60 72" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo Vytaris" role="img">
-        <!-- Escudo -->
-        <path d="M30 3 C22 3 7 10 7 10 L7 40 C7 57 17 67 30 72 C43 67 53 57 53 40 L53 10 C53 10 38 3 30 3 Z" fill="#1A56B2"/>
-        <!-- Cruz médica — barra vertical -->
-        <rect x="26.5" y="21" width="7" height="29" rx="2.5" fill="white"/>
-        <!-- Cruz médica — barra horizontal -->
-        <rect x="17" y="31" width="26" height="7" rx="2.5" fill="white"/>
-        <!-- Arco verde izquierdo: de (20,53) a (30,16) en sentido antihorario -->
-        <path d="M 20 53 A 20 20 0 0 0 30 16" stroke="#2DC78A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <!-- Arco verde derecho: de (47,26) a (30,56) en sentido horario -->
-        <path d="M 47 26 A 20 20 0 0 1 30 56" stroke="#2DC78A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      </svg>
-
+      <img src="logo.svg" class="header__logo" alt="Escudo médico Vytaris" />
       <div class="header__text">
         <span class="header__title">vytaris</span>
         <p class="header__slogan">Información de emergencia</p>
@@ -132,9 +104,9 @@
   </header>
 
 
-  <!-- ══════════════════════════════════════════════════
-       MODO CAPTURA — Formulario de registro (URL sin ?v_info)
-       ══════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       MODO CAPTURA — Formulario (URL sin ?v_info)
+       ══════════════════════════════════════════════════════ -->
   <main id="k-form-section" class="container" aria-label="Formulario de perfil médico">
 
     <div class="card">
@@ -146,10 +118,10 @@
 
       <form id="k-profile-form" class="form" novalidate autocomplete="off">
 
-        <!-- Nombre completo -->
+        <!-- Nombre -->
         <div class="form__group">
           <label class="form__label" for="k-input-name">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-user"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-user"/></svg>
             Nombre completo <span class="form__required">*</span>
           </label>
           <input class="form__input" type="text" id="k-input-name"
@@ -160,7 +132,7 @@
         <!-- Código postal -->
         <div class="form__group">
           <label class="form__label" for="k-input-zip">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-pin"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-pin"/></svg>
             Código postal
           </label>
           <input class="form__input" type="text" id="k-input-zip"
@@ -170,7 +142,7 @@
         <!-- Contacto de emergencia -->
         <div class="form__group">
           <label class="form__label" for="k-input-contact">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-phone"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-phone"/></svg>
             Contacto de emergencia <span class="form__required">*</span>
           </label>
           <input class="form__input" type="text" id="k-input-contact"
@@ -181,7 +153,7 @@
         <!-- Tipo de sangre -->
         <div class="form__group">
           <label class="form__label" for="k-select-blood">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-drop"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-drop"/></svg>
             Tipo de sangre <span class="form__required">*</span>
           </label>
           <select class="form__input form__select" id="k-select-blood" required>
@@ -202,24 +174,23 @@
         <!-- Alergias -->
         <div class="form__group">
           <label class="form__label" for="k-input-allergies">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-alert"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-alert-tri"/></svg>
             Alergias conocidas
           </label>
           <textarea class="form__input form__textarea" id="k-input-allergies"
-            placeholder="Ej. Penicilina, mariscos, látex, aspirina…" rows="3"></textarea>
+            placeholder="Ej. Penicilina, mariscos, látex…" rows="3"></textarea>
         </div>
 
-        <!-- Enfermedades crónicas -->
+        <!-- Enfermedades -->
         <div class="form__group">
           <label class="form__label" for="k-input-conditions">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#ico-cross"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#ico-med-cross"/></svg>
             Enfermedades crónicas
           </label>
           <textarea class="form__input form__textarea" id="k-input-conditions"
-            placeholder="Ej. Diabetes tipo 2, hipertensión, epilepsia…" rows="3"></textarea>
+            placeholder="Ej. Diabetes tipo 2, hipertensión…" rows="3"></textarea>
         </div>
 
-        <!-- Botón generar -->
         <button class="btn btn--primary" type="button" id="k-btn-generate">
           <svg class="icon" aria-hidden="true"><use href="#ico-zap"/></svg>
           Generar código QR
@@ -228,21 +199,18 @@
       </form>
     </div>
 
-
-    <!-- Panel de resultado (oculto hasta generación) -->
+    <!-- Panel QR (oculto hasta generar) -->
     <div id="k-qr-result" class="card card--qr hidden" aria-live="polite">
       <h2 class="card__title">
         <svg class="icon" aria-hidden="true"><use href="#ico-qr"/></svg>
         Tu QR médico está listo
       </h2>
       <p class="card__subtitle">
-        Descarga la imagen y mándala a imprimir en tu llavero.
+        Descarga la imagen e imprímela en tu llavero.
         Cualquier persona con cámara podrá escanearlo.
       </p>
 
-      <!-- qrcode.js renderiza aquí el <canvas> o <img> -->
       <div id="k-qr-canvas" class="qr-wrapper" role="img" aria-label="Código QR generado"></div>
-
       <p class="qr-url-preview" id="k-qr-url-preview"></p>
 
       <button class="btn btn--download" id="k-btn-download">
@@ -259,18 +227,17 @@
   </main>
 
 
-  <!-- ══════════════════════════════════════════════════
-       MODO PERFIL — Tarjeta de emergencia (URL con ?v_info)
-       ══════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       MODO PERFIL — Tarjeta médica (URL con ?v_info)
+       ══════════════════════════════════════════════════════ -->
   <main id="k-profile-section" class="container hidden" aria-label="Tarjeta de emergencia médica">
 
     <div class="alert-banner" role="alert" aria-live="assertive">
-      <svg class="icon icon--md" aria-hidden="true"><use href="#ico-siren"/></svg>
+      <svg class="icon icon--lg" aria-hidden="true"><use href="#ico-siren"/></svg>
       INFORMACIÓN DE EMERGENCIA
-      <svg class="icon icon--md" aria-hidden="true"><use href="#ico-siren"/></svg>
+      <svg class="icon icon--lg" aria-hidden="true"><use href="#ico-siren"/></svg>
     </div>
 
-    <!-- Renderizado dinámicamente por m_renderEmergencyCard() -->
     <div id="k-medical-card" class="medical-card" role="region" aria-label="Datos médicos del portador"></div>
 
     <p class="disclaimer">
@@ -281,7 +248,7 @@
   </main>
 
 
-  <!-- Librería QR: paquete npm "qrcode" (Promise-based, más confiable) -->
+  <!-- qrcode npm package — API Promise-based, genera canvas/PNG confiablemente -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="script.js"></script>
 
