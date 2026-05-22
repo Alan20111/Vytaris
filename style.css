@@ -82,33 +82,15 @@ body {
 .header__inner {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: center;
   max-width: 700px;
   margin: 0 auto;
 }
 
 .header__logo {
-  height: 46px;
+  height: 72px;
   width: auto;
-  flex-shrink: 0;
-  filter: drop-shadow(0 0 7px rgba(255,255,255,0.35));
-}
-
-.header__text   { display: flex; flex-direction: column; gap: 1px; }
-.header__title  {
-  color: #fff;
-  font-size: 1.55rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-  text-transform: lowercase;
-}
-.header__slogan {
-  color: rgba(255,255,255,0.75);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 1.6px;
-  font-weight: 500;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.30));
 }
 
 /* ── Fila 2: eslogan de marca centrado ──
@@ -499,10 +481,9 @@ input[type="date"].form__input::-webkit-datetime-edit-year-field {
    ================================================================ */
 @media (min-width: 480px) {
   .header__top      { padding: 0.85rem 1.5rem 0.6rem; }
-  .header__logo     { height: 52px; }
-  .header__title    { font-size: 1.7rem; }
+  .header__logo     { height: 84px; }
   .header__eslogan  { font-size: 0.88rem; }
-  .eslogan-br       { display: none; } /* en pantallas más grandes fluye en una línea */
+  .eslogan-br       { display: none; }
 
   .container   { padding: 1.5rem 1.25rem 3rem; }
   .card        { padding: 1.75rem; }
@@ -513,7 +494,7 @@ input[type="date"].form__input::-webkit-datetime-edit-year-field {
 }
 
 @media (min-width: 640px) {
-  .header__title   { font-size: 1.85rem; }
+  .header__logo    { height: 90px; }
   .header__eslogan { font-size: 0.92rem; letter-spacing: 0.8px; }
   .card__title     { font-size: 1.25rem; }
 }
